@@ -21,7 +21,8 @@ const AlumnoSchema=new Schema({
     otherSchool: {type:String, required:false},
     nameSchool: {type:String, required:false},
     average: {type:String, required:false},
-    career: {type:String, required:false}
+    career: {type:String, required:false},
+    documents: {type: [String], required:false}
 });
 
 module.exports = mongoose.model('Alumno',AlumnoSchema);

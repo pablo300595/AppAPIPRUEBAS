@@ -15,12 +15,31 @@ module.exports = {
         res.json({'status':'Alumno guardado'});
     },
     updateAlumno:async(req,res)=>{
-        const {name} = req.params;
+        const {id} = req.params;
         const alumno = {
-            name:req.body.name,
-            email:req.body.email
+            name: req.body.name,
+            placeBirth: req.body.placeBirth,
+            dateBirth: req.body.dateBirth,
+            statusCivil: req.body.statusCivil,
+            street: req.body.street,
+            colony: req.body.colony,
+            city: req.body.city,
+            state: req.body.state,
+            postalCode: req.body.postalCode,
+            phone: req.body.phone,
+            email: req.body.email,
+            etnia: req.body.etnia,
+            otherEtnia: req.body.otherEtnia,
+            disability: req.body.disability,
+            whichDisability: req.body.whichDisability,
+            school: req.body.school,
+            otherSchool: req.body.otherSchool,
+            nameSchool: req.body.nameSchool,
+            average: req.body.average,
+            career: req.body.career,
+            documents: req.body.documents
         }
-        await Alumno.findOneAndUpdate(name, {$set: alumno}, {new: true});
+        await Alumno.findByIdAndUpdate(id, {$set: alumno}, {new: true});
         res.json({'status':'Alumno actualizado'});
     },
     deleteAlumno:async(req,res)=>{
