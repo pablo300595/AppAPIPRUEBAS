@@ -17,7 +17,9 @@ module.exports = {
     updateAlumno:async(req,res)=>{
         const {id} = req.params;
         const alumno = {
-            name: req.body.name,
+            firstName: req.body.firstName,
+            lastNameFather: req.body.lastNameFather,
+            lastNameMother: req.body.lastNameMother,
             placeBirth: req.body.placeBirth,
             dateBirth: req.body.dateBirth,
             statusCivil: req.body.statusCivil,

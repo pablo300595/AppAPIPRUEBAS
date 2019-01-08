@@ -2,7 +2,9 @@ const mongoose = require('mongoose');
 const { Schema } =mongoose;
 
 const AlumnoSchema=new Schema({
-    name: {type:String, required:false},
+    firstName: {type:String, required:false},
+    lastNameFather: {type:String, required:false},
+    lastNameMother: {type:String, required:false},
     placeBirth: {type:String, required:false},
     dateBirth: {type:String, required:false},
     statusCivil: {type:String, required:false},
@@ -22,7 +24,8 @@ const AlumnoSchema=new Schema({
     nameSchool: {type:String, required:false},
     average: {type:String, required:false},
     career: {type:String, required:false},
-    documents: {type: [String], required:false}
+    documents: {type: [String], required:false},
+    validated:{type: Boolean, required:false}
 });
 
 module.exports = mongoose.model('Alumno',AlumnoSchema);
