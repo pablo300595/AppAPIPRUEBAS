@@ -14,16 +14,16 @@ module.exports= {
         // let sampleFile = req.files.sampleFile;
         // let fileName = req.body.filename;
         //Validations
-        if(req.files.sampleFile.truncated == true){
+        if(req.files.file.truncated == true){
             res.json({status:'/Too Big$'});
             return res.status(500);
         }
-        const application = (req.files.sampleFile.mimetype).substring(((req.files.sampleFile.mimetype).indexOf('/'))+1);
+        const application = (req.files.file.mimetype).substring(((req.files.file.mimetype).indexOf('/'))+1);
         if(application != 'pdf'){
             res.json({status:'/Invalid format$'});
             return res.status(500);
         }
-        req.files.sampleFile.mv(`/home/pablo/Escritorio/WEB-Dev/projects/APPAPIPRUEBAS/upload/${folder}/documentos/${req.body.filename}`, (err)=>{
+        req.files.file.mv(`/home/pablo/Escritorio/WEB-Dev/projects/APPAPIPRUEBAS/upload/${folder}/documentos/${req.body.filename}`, (err)=>{
             if (err){
                 res.json({status:'Route does not exist'});
                 return res.status(500).send(err);
