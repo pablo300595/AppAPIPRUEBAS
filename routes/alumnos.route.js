@@ -13,6 +13,7 @@ routerAlumno.route('/:id')
 
 routerAlumno.route('/status/:id')
     .put(updateAlumnoInscripcionStatus)
+    .post(updateAlumnoInscripcionStatus)
     .get(getAlumnoStatusInscripcion);
 
 module.exports = routerAlumno;

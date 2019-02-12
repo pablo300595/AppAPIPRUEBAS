@@ -19,10 +19,27 @@ module.exports= {
             return res.status(500);
         }
         const application = (req.files.file.mimetype).substring(((req.files.file.mimetype).indexOf('/'))+1);
-        if(application != 'pdf'){
+        if(application != 'pdf' && application != 'png' && application != 'jpeg'){
             res.json({status:'/Invalid format$'});
             return res.status(500);
         }
+
+        if (application == 'png') {
+            if(!req.body.isImage){
+                res.json({status:'/Invalid format$'});
+                return res.status(500);
+            }
+            req.body.filename += '.png';
+        }
+
+        if (application == 'jpeg') {
+            if(!req.body.isImage){
+                res.json({status:'/Invalid format$'});
+                return res.status(500);
+            }
+            req.body.filename += '.jpg';
+        }
+
         req.files.file.mv(`/home/pablo/Escritorio/WEB-Dev/projects/APPAPIPRUEBAS/upload/${folder}/documentos/${req.body.filename}`, (err)=>{
             if (err){
                 res.json({status:'Route does not exist'});
