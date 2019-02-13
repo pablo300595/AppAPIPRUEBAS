@@ -6,8 +6,8 @@ module.exports = {
         res.json(alumnos);
     },
     getAlumno:async(req,res)=>{
-        const alumno = await Alumno.findOne({ctrlNumber:req.params.id});
-        res.json(alumno);
+        const alumno = await Alumno.findOne({controlNumber:req.params.id});
+        gres.json(alumno);
     },
     getAlumnoStatusInscripcion:async(req,res)=>{
         const alumno = await Alumno.findById({_id:req.params.id},{'statusInscripcion':1,'_id':0});
@@ -24,6 +24,7 @@ module.exports = {
             firstName: req.body.firstName,
             lastNameFather: req.body.lastNameFather,
             lastNameMother: req.body.lastNameMother,
+            controlNumber: req.body.controlNumber,
             placeBirth: req.body.placeBirth,
             dateBirth: req.body.dateBirth,
             statusCivil: req.body.statusCivil,
