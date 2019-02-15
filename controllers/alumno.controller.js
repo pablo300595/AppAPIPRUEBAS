@@ -60,7 +60,10 @@ module.exports = {
         res.json({'status':'status inscripcion actualizado'});
     },
     deleteAlumno:async(req,res)=>{
-        await Alumno.findByIdAndRemove(req.params.id);
+        await Alumno.findOneAndDelete({controlNumber:req.params.id});
         res.json({status: 'Alumno Eliminado'});
     }
+
+    
+
 }

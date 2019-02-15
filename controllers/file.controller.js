@@ -3,7 +3,7 @@ const mkdirp = require('mkdirp');
 module.exports= {
     uploadFile:(req,res)=>{
         const folder = req.body.usuario;   
-        mkdirp(`/home/pablo/Escritorio/WEB-Dev/projects/APPAPIPRUEBAS/upload/${folder}/documentos`, function(err) { 
+        mkdirp(`/home/francisco/Escritorio/WEB-Dev/projects/APPAPIPRUEBAS/upload/${folder}/documentos`, function(err) { 
             // path exists unless there was an error
         });
 
@@ -40,7 +40,7 @@ module.exports= {
             req.body.filename += '.jpg';
         }
 
-        req.files.file.mv(`/home/pablo/Escritorio/WEB-Dev/projects/APPAPIPRUEBAS/upload/${folder}/documentos/${req.body.filename}`, (err)=>{
+        req.files.file.mv(`/home/francisco/Escritorio/WEB-Dev/projects/APPAPIPRUEBAS/upload/${folder}/documentos/${req.body.filename}`, (err)=>{
             if (err){
                 res.json({status:'Route does not exist'});
                 return res.status(500).send(err);
