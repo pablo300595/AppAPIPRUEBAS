@@ -51,6 +51,39 @@ module.exports = {
         await Alumno.findByIdAndUpdate(id, {$set: alumno}, {new: true});
         res.json({'status':'Alumno actualizado'});
     },
+    updateAlumnoByCtrlNumber:async(req,res)=>{
+        const {id} = req.params;
+        const alumno = {
+            firstName: req.body.firstName,
+            lastNameFather: req.body.lastNameFather,
+            lastNameMother: req.body.lastNameMother,
+            controlNumber: req.body.controlNumber,
+            placeBirth: req.body.placeBirth,
+            dateBirth: req.body.dateBirth,
+            statusCivil: req.body.statusCivil,
+            email: req.body.email,
+            curp: req.body.curp,
+            nss: req.body.nss,
+            street: req.body.street,
+            colony: req.body.colony,
+            city: req.body.city,
+            state: req.body.state,
+            postalCode: req.body.postalCode,
+            phone: req.body.phone,
+            etnia: req.body.etnia,
+            otherEtnia: req.body.otherEtnia,
+            disability: req.body.disability,
+            whichDisability: req.body.whichDisability,
+            school: req.body.school,
+            otherSchool: req.body.otherSchool,
+            nameSchool: req.body.nameSchool,
+            average: req.body.average,
+            career: req.body.career,
+            documents: req.body.documents
+        }
+        await Alumno.findOneAndUpdate(id, {$set: alumno}, {new: true});
+        res.json({'status':'Alumno actualizado'});
+    },
     updateAlumnoInscripcionStatus:async(req,res)=>{
         const {id} = req.params;
         const alumno = {
