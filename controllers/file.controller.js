@@ -40,7 +40,7 @@ module.exports= {
             req.body.filename += '.jpg';
         }
 
-        req.files.file.mv(`/home/francisco/Escritorio/WEB-Dev/projects/APPAPIPRUEBAS/upload/${folder}/documentos/${req.body.filename}`, (err)=>{
+        req.files.file.mv(`/home/pablo/Escritorio/WEB-Dev/projects/APPAPIPRUEBAS/upload/${folder}/documentos/${req.body.filename}`, (err)=>{
             if (err){
                 res.json({status:'Route does not exist'});
                 return res.status(500).send(err);

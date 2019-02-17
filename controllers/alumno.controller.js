@@ -9,6 +9,10 @@ module.exports = {
         const alumno = await Alumno.findOne({controlNumber:req.params.id});
         res.json(alumno);
     },
+    getAlumnoById:async(req,res)=>{
+        const alumno = await Alumno.findById({_id:req.params.id});
+        res.json(alumno);
+    },
     getAlumnoStatusInscripcion:async(req,res)=>{
         const alumno = await Alumno.findById({_id:req.params.id},{'statusInscripcion':1,'_id':0});
         res.json(alumno);
