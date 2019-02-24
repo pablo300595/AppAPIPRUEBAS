@@ -3,7 +3,7 @@ const mkdirp = require('mkdirp');
 module.exports= {
     uploadFile:(req,res)=>{
         const folder = req.body.usuario;   
-        mkdirp(`/home/francisco/Escritorio/WEB-Dev/projects/APPAPIPRUEBAS/upload/${folder}/documentos`, function(err) { 
+        mkdirp(`/home/pablo/Escritorio/WEB-Dev/projects/APPAPIPRUEBAS/upload/${folder}/documentos`, function(err) { 
             // path exists unless there was an error
         });
 
@@ -11,8 +11,6 @@ module.exports= {
             return res.status(400).send('No files were uploaded.');
         }
 
-        // let sampleFile = req.files.sampleFile;
-        // let fileName = req.body.filename;
         //Validations
         if(req.files.file.truncated == true){
             res.json({status:'/Too Big$'});
