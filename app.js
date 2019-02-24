@@ -27,6 +27,7 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 //routes
+app.get('/', (req, res) => {return res.send('Hello')});
 app.use('/alumnos',alumnoRoutes);
 app.use('/login',loginRoutes);
 app.use('/usuarios',usuarioRoutes);
