@@ -4,6 +4,7 @@
   "description": "Pruebas",
   "main": "app.js",
   "scripts": {
+    "start": "src/app.js",
     "test": "node app.js"
   },
   "author": "Pablo Valenzuela",

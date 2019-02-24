@@ -11,8 +11,6 @@ module.exports= {
             return res.status(400).send('No files were uploaded.');
         }
 
-        // let sampleFile = req.files.sampleFile;
-        // let fileName = req.body.filename;
         //Validations
         if(req.files.file.truncated == true){
             res.json({status:'/Too Big$'});

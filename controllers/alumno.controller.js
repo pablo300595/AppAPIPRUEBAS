@@ -6,7 +6,11 @@ module.exports = {
         res.json(alumnos);
     },
     getAlumno:async(req,res)=>{
-        const alumno = await Alumno.findOne({ctrlNumber:req.params.id});
+        const alumno = await Alumno.findOne({controlNumber:req.params.id});
+        res.json(alumno);
+    },
+    getAlumnoById:async(req,res)=>{
+        const alumno = await Alumno.findById({_id:req.params.id});
         res.json(alumno);
     },
     getAlumnoStatusInscripcion:async(req,res)=>{
@@ -24,6 +28,7 @@ module.exports = {
             firstName: req.body.firstName,
             lastNameFather: req.body.lastNameFather,
             lastNameMother: req.body.lastNameMother,
+            controlNumber: req.body.controlNumber,
             placeBirth: req.body.placeBirth,
             dateBirth: req.body.dateBirth,
             statusCivil: req.body.statusCivil,
@@ -50,6 +55,39 @@ module.exports = {
         await Alumno.findByIdAndUpdate(id, {$set: alumno}, {new: true});
         res.json({'status':'Alumno actualizado'});
     },
+    updateAlumnoByCtrlNumber:async(req,res)=>{
+        const {id} = req.params;
+        const alumno = {
+            firstName: req.body.firstName,
+            lastNameFather: req.body.lastNameFather,
+            lastNameMother: req.body.lastNameMother,
+            controlNumber: req.body.controlNumber,
+            placeBirth: req.body.placeBirth,
+            dateBirth: req.body.dateBirth,
+            statusCivil: req.body.statusCivil,
+            email: req.body.email,
+            curp: req.body.curp,
+            nss: req.body.nss,
+            street: req.body.street,
+            colony: req.body.colony,
+            city: req.body.city,
+            state: req.body.state,
+            postalCode: req.body.postalCode,
+            phone: req.body.phone,
+            etnia: req.body.etnia,
+            otherEtnia: req.body.otherEtnia,
+            disability: req.body.disability,
+            whichDisability: req.body.whichDisability,
+            school: req.body.school,
+            otherSchool: req.body.otherSchool,
+            nameSchool: req.body.nameSchool,
+            average: req.body.average,
+            career: req.body.career,
+            documents: req.body.documents
+        }
+        await Alumno.findOneAndUpdate(id, {$set: alumno}, {new: true});
+        res.json({'status':'Alumno actualizado'});
+    },
     updateAlumnoInscripcionStatus:async(req,res)=>{
         const {id} = req.params;
         const alumno = {
@@ -59,7 +97,10 @@ module.exports = {
         res.json({'status':'status inscripcion actualizado'});
     },
     deleteAlumno:async(req,res)=>{
-        await Alumno.findByIdAndRemove(req.params.id);
+        await Alumno.findOneAndDelete({controlNumber:req.params.id});
         res.json({status: 'Alumno Eliminado'});
     }
+
+    
+
 }

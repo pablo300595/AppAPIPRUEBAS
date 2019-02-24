@@ -5,6 +5,7 @@ const AlumnoSchema=new Schema({
     firstName: {type:String, required:true},
     lastNameFather: {type:String, required:true},
     lastNameMother: {type:String, required:true},
+    controlNumber: {type:String, required:true},
     placeBirth: {type:String, required:true},
     dateBirth: {type:String, required:true},
     statusCivil: {type:String, required:true},
