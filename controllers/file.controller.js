@@ -1,17 +1,17 @@
 const mkdirp = require('mkdirp');
-const jsftp = require("jsftp");
-
-const Ftp = new jsftp({
-  host: "files.000webhost.com",
-  port: 21,
-  user: "filetestresidence",
-  pass: "2g8v-obf3-grq2"
-});
+const Client = require('ftp');
+const FTPCONFIG = {   
+    host:"files.000webhost.com",
+    port: 21, 
+    user: "filetestresidence", 
+    password: "2g8v-obf3-grq2"
+};
 
 module.exports= {
     uploadFile:(req,res)=>{
-        const folder = req.body.usuario;   
-        mkdirp(`/home/pablo/Escritorio/WEB-Dev/projects/APPAPIPRUEBAS/upload/${folder}/documentos`, function(err) { 
+        const folder = req.body.usuario;
+        let client = new Client();   
+        mkdirp(`/home/pablo/Escritorio/ftp/${folder}/documentos`, function(err) { 
             // path exists unless there was an error
         });
 
@@ -46,25 +46,20 @@ module.exports= {
             req.body.filename += '.jpg';
         }
 
-        /*Ftp.put(buffer, "path/to/remote/file.txt", err => {
-            if (!err) {
-              console.log("File transferred successfully!");
-            }
-        });*/
-
-        ftp.get("13400501/Glossary_English_MOOCs.pdf", "home/pablo/Escritorio/ftp/file.pdf", err => {
-            if (hadErr) {
-              return console.error("There was an error retrieving the file.");
-            }
-            console.log("File copied successfully!");
-        });
-
-        req.files.file.mv(`/home/pablo/Escritorio/WEB-Dev/projects/APPAPIPRUEBAS/upload/${folder}/documentos/${req.body.filename}`, (err)=>{
-            if (err){
-                res.json({status:'Route does not exist'});
-                return res.status(500).send(err);
-            }
+        client.on('ready', function() {
+            req.files.file.mv(`/home/pablo/Escritorio/ftp/${folder}/documentos/${req.body.filename}`, (err)=>{
+                if (err){
+                    res.json({status:'Route does not exist'});
+                    return res.status(500).send(err);
+                }
+            });
+            client.put(`/home/pablo/Escritorio/ftp/${req.body.filename}`, `${folder}/documentos/${req.body.filename}`, function(err) {
+                if (err) throw err;client.end();
+            });
             res.send('File uploaded!');
         });
+        client.connect(FTPCONFIG);
+
+        
     }
 }
