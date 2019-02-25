@@ -1,5 +1,4 @@
 const mkdirp = require('mkdirp');
-//const Client = require('ftp');
 
 module.exports= {
     uploadFile:(req,res)=>{
@@ -38,20 +37,6 @@ module.exports= {
             }
             req.body.filename += '.jpg';
         }
-
-        /*let c = new Client();
-        c.on('ready', function() {
-            c.put('/home/pablo/Escritorio/ftp/PRUEBAMINI.csv', '13400501/PRUEBAMINI.csv', function(err) {
-                if (err) throw err;
-                c.end();
-            });
-        });
-        c.connect(
-            {   host:"files.000webhost.com",
-                port: 21, 
-                user: "filetestresidence", 
-                password: "2g8v-obf3-grq2"
-            });
 
         req.files.file.mv(`/home/pablo/Escritorio/WEB-Dev/projects/APPAPIPRUEBAS/upload/${folder}/documentos/${req.body.filename}`, (err)=>{
             if (err){
