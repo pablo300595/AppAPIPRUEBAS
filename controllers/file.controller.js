@@ -1,4 +1,12 @@
 const mkdirp = require('mkdirp');
+const jsftp = require("jsftp");
+
+const Ftp = new jsftp({
+  host: "files.000webhost.com",
+  port: 21,
+  user: "filetestresidence",
+  pass: "2g8v-obf3-grq2"
+});
 
 module.exports= {
     uploadFile:(req,res)=>{
@@ -37,6 +45,19 @@ module.exports= {
             }
             req.body.filename += '.jpg';
         }
+
+        /*Ftp.put(buffer, "path/to/remote/file.txt", err => {
+            if (!err) {
+              console.log("File transferred successfully!");
+            }
+        });*/
+
+        ftp.get("13400501/Glossary_English_MOOCs.pdf", "home/pablo/Escritorio/ftp/file.pdf", err => {
+            if (hadErr) {
+              return console.error("There was an error retrieving the file.");
+            }
+            console.log("File copied successfully!");
+        });
 
         req.files.file.mv(`/home/pablo/Escritorio/WEB-Dev/projects/APPAPIPRUEBAS/upload/${folder}/documentos/${req.body.filename}`, (err)=>{
             if (err){
