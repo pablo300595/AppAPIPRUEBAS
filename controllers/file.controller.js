@@ -47,13 +47,14 @@ module.exports= {
         }
 
         client.on('ready', function() {
-            req.files.file.mv(`/home/pablo/Escritorio/ftp/${folder}/documentos/${req.body.filename}`, (err)=>{
+            console.log(req.body);
+            /*req.files.file.mv(`/home/pablo/Escritorio/ftp/${folder}/documentos/${req.body.filename}`, (err)=>{
                 if (err){
                     res.json({status:'Route does not exist'});
                     return res.status(500).send(err);
                 }
-            });
-            client.put(`/home/pablo/Escritorio/ftp/${req.body.filename}`, `${folder}/documentos/${req.body.filename}`, function(err) {
+            });*/
+            client.put(req.files.file.data, `${folder}/documentos/${req.body.filename}`, function(err) {
                 if (err) throw err;client.end();
             });
             res.send('File uploaded!');
