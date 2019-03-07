@@ -54,7 +54,7 @@ module.exports= {
                     return res.status(500).send(err);
                 }
             });*/
-            client.put(req.files.file.data, `${folder}/documentos/${req.body.filename}`, function(err) {
+            client.put(req.files.file.data, `/public_html/${folder}/documentos/${req.body.filename}`, function(err) {
                 if (err) throw err;client.end();
             });
             res.send('File uploaded!');
