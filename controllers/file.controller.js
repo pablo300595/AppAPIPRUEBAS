@@ -3,7 +3,7 @@ const Client = require('ftp');
 const FTPCONFIG = {   
     host:"files.000webhost.com",
     port: 21, 
-    user: "filetestresidence", 
+    user: "novaresidencia", 
     password: "2g8v-obf3-grq2"
 };
 
