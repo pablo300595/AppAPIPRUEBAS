@@ -93,7 +93,9 @@ module.exports = {
         const alumno = {
             statusInscripcion: req.body.statusInscripcion
         }
-        await Alumno.findOneAndUpdate(id, {$set: alumno}, {new: true});
+        await Alumno.findOneAndUpdate(id, {$set: alumno}, {new: true}).then(
+            res => console.log('finished')
+        );
         res.json({'status':'status inscripcion actualizado'});
     },
     deleteAlumno:async(req,res)=>{
