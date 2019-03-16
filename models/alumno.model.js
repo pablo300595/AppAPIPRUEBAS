@@ -28,7 +28,10 @@ const AlumnoSchema=new Schema({
     nameSchool: {type:String, required:true},
     average: {type:Number, required:true},
     career: {type:String, required:true},
-    documents: {type: [String], required:false},
+    documents: {
+        type: [
+            {documentName: String, status:String, observacion:String}
+        ], required:false},
     statusInscripcion: {type: String, required:false},
     validated:{type: Boolean, required:false}
 });
