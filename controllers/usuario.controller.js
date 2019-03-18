@@ -35,7 +35,8 @@ module.exports = {
             user:req.body.user,
             pass:req.body.pass,
             active:req.body.active,
-            credential:req.body.credential
+            credential:req.body.credential,
+            alumno:req.body.alumno
         }
         await Usuario.findByIdAndUpdate(id, {$set: newUser}, {new: true});
         res.json({'status':'Usuario actualizado'});

@@ -85,7 +85,7 @@ module.exports = {
             career: req.body.career,
             documents: req.body.documents
         }
-        await Alumno.findOneAndUpdate(id, {$set: alumno}, {new: true});
+        const consulta = await Alumno.findOneAndUpdate({controlNumber:req.params.id}, {$set: alumno});
         res.json({'status':'Alumno actualizado'});
     },
     updateAlumnoInscripcionStatus:async(req,res)=>{
@@ -93,7 +93,7 @@ module.exports = {
         const alumno = {
             statusInscripcion: req.body.statusInscripcion
         }
-        await Alumno.findOneAndUpdate(id, {$set: alumno}, {new: true}).then(
+        await Alumno.findByIdAndUpdate(id, {$set: alumno}, {new: true}).then(
             res => console.log('finished')
         );
         res.json({'status':'status inscripcion actualizado'});
