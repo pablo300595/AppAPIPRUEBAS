@@ -98,6 +98,28 @@ module.exports = {
         );
         res.json({'status':'status inscripcion actualizado'});
     },
+    updateAlumnoDocumentation: async(req,res)=>{
+        const documentation = await Alumno.findById({_id:req.params.id},
+            'documents').catch();
+        const documents = documentation.documents;
+        
+        try{
+            for(let i=0;i<documents.length;i++) {           
+                if(documents[i].documentName== req.body.documentName){
+                    // idDocumentToUpdate = documents[i].id;
+                    await Alumno.findByIdAndUpdate({ _id: req.params.id }, 
+                        { $pull: { documents: {_id: documents[i].id }}});
+                    await Alumno.findByIdAndUpdate({ _id: req.params.id }, 
+                        { $push: { documents: req.body } });
+                    break;
+                }
+            }
+        }catch(e){
+            console.log(e);
+        }
+        
+        res.json(documentation);
+    },
     deleteAlumno:async(req,res)=>{
         await Alumno.findOneAndDelete({controlNumber:req.params.id});
         res.json({status: 'Alumno Eliminado'});
