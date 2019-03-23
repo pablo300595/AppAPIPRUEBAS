@@ -120,7 +120,7 @@ module.exports = {
         res.json(documentation);
     },
     getAlumnoDocumentation:async(req,res)=>{
-        const documentation = await Alumno.findById({_id:req.params.id},
+        const documentation = await Alumno.findOne({controlNumber:req.params.id},
             'documents -_id').catch();
         res.json(documentation.documents);
     },
