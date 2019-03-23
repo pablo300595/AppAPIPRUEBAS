@@ -106,7 +106,6 @@ module.exports = {
         try{
             for(let i=0;i<documents.length;i++) {           
                 if(documents[i].documentName== req.body.documentName){
-                    // idDocumentToUpdate = documents[i].id;
                     await Alumno.findByIdAndUpdate({ _id: req.params.id }, 
                         { $pull: { documents: {_id: documents[i].id }}});
                     await Alumno.findByIdAndUpdate({ _id: req.params.id }, 
@@ -119,6 +118,11 @@ module.exports = {
         }
         
         res.json(documentation);
+    },
+    getAlumnoDocumentation:async(req,res)=>{
+        const documentation = await Alumno.findById({_id:req.params.id},
+            'documents -_id').catch();
+        res.json(documentation.documents);
     },
     deleteAlumno:async(req,res)=>{
         await Alumno.findOneAndDelete({controlNumber:req.params.id});

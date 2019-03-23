@@ -2,7 +2,8 @@ const express = require('express');
 const routerAlumno = express.Router();
 const {getAlumnos,insertAlumno,getAlumno,updateAlumno,deleteAlumno,
     updateAlumnoInscripcionStatus,getAlumnoStatusInscripcion, 
-    updateAlumnoByCtrlNumber, getAlumnoById, updateAlumnoDocumentation} = require('../controllers/alumno.controller');
+    updateAlumnoByCtrlNumber, getAlumnoById, updateAlumnoDocumentation,
+    getAlumnoDocumentation} = require('../controllers/alumno.controller');
 
 routerAlumno.route('/')
     .get(getAlumnos)
@@ -25,6 +26,7 @@ routerAlumno.route('/status/:id')
     .get(getAlumnoStatusInscripcion);
 
 routerAlumno.route('/documentation/:id')
+    .get(getAlumnoDocumentation)
     .put(updateAlumnoDocumentation);
 
 module.exports = routerAlumno;
