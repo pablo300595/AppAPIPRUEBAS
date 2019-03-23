@@ -119,6 +119,26 @@ module.exports = {
         
         res.json(documentation);
     },
+    updateAlumnoDocumentationByCtrlNumber:async(req,res)=>{
+        const documentation = await Alumno.findOne({controlNumber:req.params.id},
+            'documents').catch();
+        const documents = documentation.documents;
+        
+        try{
+            for(let i=0;i<documents.length;i++) {           
+                if(documents[i].documentName== req.body.documentName){
+                    await Alumno.findOneAndUpdate({ controlNumber: req.params.id }, 
+                        { $pull: { documents: {_id: documents[i].id }}});
+                    await Alumno.findOneAndUpdate({controlNumber: req.params.id }, 
+                        { $push: { documents: req.body } });
+                    break;
+                }
+            }
+        }catch(e){
+            console.log(e);
+        }
+        res.json(documentation);
+    },
     getAlumnoDocumentation:async(req,res)=>{
         const documentation = await Alumno.findOne({controlNumber:req.params.id},
             'documents -_id').catch();

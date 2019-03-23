@@ -3,7 +3,7 @@ const routerAlumno = express.Router();
 const {getAlumnos,insertAlumno,getAlumno,updateAlumno,deleteAlumno,
     updateAlumnoInscripcionStatus,getAlumnoStatusInscripcion, 
     updateAlumnoByCtrlNumber, getAlumnoById, updateAlumnoDocumentation,
-    getAlumnoDocumentation} = require('../controllers/alumno.controller');
+    updateAlumnoDocumentationByCtrlNumber, getAlumnoDocumentation} = require('../controllers/alumno.controller');
 
 routerAlumno.route('/')
     .get(getAlumnos)
@@ -28,5 +28,8 @@ routerAlumno.route('/status/:id')
 routerAlumno.route('/documentation/:id')
     .get(getAlumnoDocumentation)
     .put(updateAlumnoDocumentation);
+
+routerAlumno.route('/documentation/ctrl/:id')
+    .put(updateAlumnoDocumentationByCtrlNumber);
 
 module.exports = routerAlumno;
