@@ -139,6 +139,10 @@ module.exports = {
         }
         res.json(documentation);
     },
+    insertAlumnoDocumentation:async(req,res) => {
+        await Alumno.findByIdAndUpdate({_id:req.params.id},{ $push: { documents: req.body }}).catch();
+        res.json({"status":"Documentación insertada"});
+    },
     getAlumnoDocumentation:async(req,res)=>{
         const documentation = await Alumno.findOne({controlNumber:req.params.id},
             'documents -_id').catch();

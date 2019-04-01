@@ -6,7 +6,8 @@ const UsuarioSchema=new Schema({
     user: {type:String, required:true},
     pass: {type:String, required:true},
     active: {type: Boolean, required:true},
-    credential:{type: String, required:true}
+    credential:{type: String, required:true},
+    career: {type: [String], required:false}
 });
 
 module.exports = mongoose.model('Usuario',UsuarioSchema);
