@@ -56,7 +56,6 @@ module.exports = {
         res.json({'status':'Alumno actualizado'});
     },
     updateAlumnoByCtrlNumber:async(req,res)=>{
-        const {id} = req.params;
         const alumno = {
             firstName: req.body.firstName,
             lastNameFather: req.body.lastNameFather,
@@ -82,8 +81,8 @@ module.exports = {
             otherSchool: req.body.otherSchool,
             nameSchool: req.body.nameSchool,
             average: req.body.average,
-            career: req.body.career,
-            documents: req.body.documents
+            career: req.body.career
+            // documents: req.body.documents
         }
         const consulta = await Alumno.findOneAndUpdate({controlNumber:req.params.id}, {$set: alumno});
         res.json({'status':'Alumno actualizado'});
@@ -140,7 +139,7 @@ module.exports = {
         res.json(documentation);
     },
     insertAlumnoDocumentation:async(req,res) => {
-        await Alumno.findByIdAndUpdate({_id:req.params.id},{ $push: { documents: req.body }}).catch();
+        await Alumno.findByIdAndUpdate({_id:req.params.id},{$set:{ documents: req.body }}).catch();
         res.json({"status":"Documentación insertada"});
     },
     getAlumnoDocumentation:async(req,res)=>{
