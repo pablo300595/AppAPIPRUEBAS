@@ -4,11 +4,14 @@ const {getAlumnos,insertAlumno,getAlumno,updateAlumno,deleteAlumno,
     updateAlumnoInscripcionStatus,getAlumnoStatusInscripcion, 
     updateAlumnoByCtrlNumber, getAlumnoById, updateAlumnoDocumentation,
     updateAlumnoDocumentationByCtrlNumber, getAlumnoDocumentation,
-    insertAlumnoDocumentation} = require('../controllers/alumno.controller');
+    insertAlumnoDocumentation, getAlumnosByCareer} = require('../controllers/alumno.controller');
 
 routerAlumno.route('/')
     .get(getAlumnos)
     .post(insertAlumno);
+
+routerAlumno.route('/career')
+    .post(getAlumnosByCareer);
 
 routerAlumno.route('/:id')
     .get(getAlumno)

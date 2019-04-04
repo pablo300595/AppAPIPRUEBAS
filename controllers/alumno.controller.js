@@ -5,6 +5,10 @@ module.exports = {
         const alumnos = await Alumno.find();
         res.json(alumnos);
     },
+    getAlumnosByCareer:async(req,res)=>{
+        const alumnos = await Alumno.find({career: {$in: req.body.career}});
+        res.json(alumnos);
+    },
     getAlumno:async(req,res)=>{
         const alumno = await Alumno.findOne({controlNumber:req.params.id});
         res.json(alumno);
