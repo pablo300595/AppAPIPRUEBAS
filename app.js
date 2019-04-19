@@ -4,6 +4,7 @@ const alumnoRoutes = require('./routes/alumnos.route');
 const loginRoutes = require('./routes/login.route');
 const usuarioRoutes = require('./routes/usuarios.route');
 const fileRoutes = require('./routes/file.route');
+const secretariaRoutes = require('./routes/secretaria.route');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
@@ -32,6 +33,7 @@ app.use('/alumnos',alumnoRoutes);
 app.use('/login',loginRoutes);
 app.use('/usuarios',usuarioRoutes);
 app.use('/upload',fileRoutes);
+app.use('/secretarias', secretariaRoutes);
 
 //server
 app.listen(app.get('port'),()=>{
