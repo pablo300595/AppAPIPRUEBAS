@@ -9,7 +9,7 @@ module.exports = {
         const jefe = await Jefe.findById({_id:req.params.id});
         res.json(jefe);
     },
-    insertJefe: async() => {
+    insertJefe: async(req,res) => {
         const jefe = new Jefe(req.body);
         await jefe.save();
         res.json({'status':'jefe guardado'});
