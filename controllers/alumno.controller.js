@@ -112,7 +112,7 @@ module.exports = {
                     await Alumno.findByIdAndUpdate({ _id: req.params.id }, 
                         { $pull: { documents: {_id: documents[i].id }}});
                     await Alumno.findByIdAndUpdate({ _id: req.params.id }, 
-                        { $push: { documents: req.body } });
+                        { $push: { documents: req.body }, $sort: { ts: -1 } });
                     break;
                 }
             }
@@ -133,7 +133,7 @@ module.exports = {
                     await Alumno.findOneAndUpdate({ controlNumber: req.params.id }, 
                         { $pull: { documents: {_id: documents[i].id }}});
                     await Alumno.findOneAndUpdate({controlNumber: req.params.id }, 
-                        { $push: { documents: req.body } });
+                        { $push: { documents: req.body }, $sort: { ts: -1 } });
                     break;
                 }
             }
