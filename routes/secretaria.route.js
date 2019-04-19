@@ -9,6 +9,6 @@ routerSecretaria.route('/')
 
 routerSecretaria.route('/:id')
     .get(getSecretaria)
-    .post(updateSecretaria);
+    .put(updateSecretaria);
 
 module.exports = routerSecretaria;
