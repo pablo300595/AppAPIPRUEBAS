@@ -2,7 +2,16 @@ const Movement = require('./../models/secretaria-movement.model');
 
 module.exports = {
     getMovements: async (req,res) => {
-        const movements = await Movement.find();
+        const movements = await Movement.aggregate([
+            {
+                $lookup: {
+                    from: 'secretarias',
+                    localField: 'secretaria',
+                    foreignField: '_id',
+                    as: 'movement_secretaria'
+                  }
+            }
+        ]);
         res.json(movements);
     },
     getMovement: async (req,res) => {
