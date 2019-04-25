@@ -20,6 +20,9 @@ module.exports = {
                   }
             }
         ]);
+        for(let i=0;i<movements.length; i++) {
+            movements[i].dateModificationServer = new Date();
+        }
         res.json(movements);
     },
     getMovement: async (req,res) => {
