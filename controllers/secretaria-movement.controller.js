@@ -10,6 +10,14 @@ module.exports = {
                     foreignField: '_id',
                     as: 'movement_secretaria'
                   }
+            },
+            {
+                $lookup: {
+                    from: 'secretarias',
+                    localField: 'alumno',
+                    foreignField: '_id',
+                    as: 'movement_alumno'
+                  }
             }
         ]);
         res.json(movements);
