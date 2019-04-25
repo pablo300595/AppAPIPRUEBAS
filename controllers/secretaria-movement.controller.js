@@ -13,7 +13,7 @@ module.exports = {
             },
             {
                 $lookup: {
-                    from: 'secretarias',
+                    from: 'alumnos',
                     localField: 'alumno',
                     foreignField: '_id',
                     as: 'movement_alumno'
