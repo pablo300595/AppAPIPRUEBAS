@@ -6,6 +6,7 @@ const usuarioRoutes = require('./routes/usuarios.route');
 const fileRoutes = require('./routes/file.route');
 const secretariaRoutes = require('./routes/secretaria.route');
 const jefeRoutes = require('./routes/jefe.route');
+const periodoRoutes = require('./routes/periodo.route');
 const movementRoutes = require('./routes/secretaria-movement.route');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
@@ -38,6 +39,7 @@ app.use('/upload',fileRoutes);
 app.use('/secretarias', secretariaRoutes);
 app.use('/jefe', jefeRoutes);
 app.use('/secre-movement', movementRoutes);
+app.use('/periodo', periodoRoutes);
 
 //server
 app.listen(app.get('port'),()=>{
