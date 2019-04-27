@@ -16,8 +16,42 @@ module.exports = {
           ]);
         res.json(users);
     },
-    getUser: async(req,res)=>{
+    /*getUser: async(req,res)=>{
         const searchedUser = await Usuario.findOne({user:req.params.id});
+        res.json(searchedUser);
+    },*/
+    getUser: async(req,res)=>{
+        const searchedUser = await Usuario.aggregate([
+            {   
+                $lookup: {
+                    from: 'alumnos',
+                    localField: 'alumno',
+                    foreignField: '_id',
+                    as: 'usuario_alumno'
+                }
+            },
+            {   
+                $lookup: {
+                    from: 'secretarias',
+                    localField: 'secretaria',
+                    foreignField: '_id',
+                    as: 'usuario_secretaria'
+                }
+            },
+            {   
+                $lookup: {
+                    from: 'jeves',
+                    localField: 'jefe',
+                    foreignField: '_id',
+                    as: 'usuario_jefe'
+                }
+            },
+            {
+                $match: {
+                    user:req.params.id
+                }
+            }
+        ]);
         res.json(searchedUser);
     },
     createUser: async(req,res)=>{
