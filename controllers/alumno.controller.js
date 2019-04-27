@@ -6,8 +6,13 @@ module.exports = {
         res.json(alumnos);
     },
     getAlumnosByCareer:async(req,res)=>{
-        const alumnos = await Alumno.find({career: {$in: req.body.career}});
-        res.json(alumnos);
+        if(req.body[0].credential == 'chief'){
+            const alumnos = await Alumno.find();
+            res.json(alumnos);
+        }else{
+            const alumnos = await Alumno.find({career: {$in: req.body[0].usuario_secretaria[0].career}});
+            res.json(alumnos);
+        }
     },
     getAlumno:async(req,res)=>{
         const alumno = await Alumno.findOne({controlNumber:req.params.id});
