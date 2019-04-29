@@ -34,6 +34,7 @@ module.exports = {
                 }
             }
         ]);
+        res.json(alumno);
     },
     getAlumnoById:async(req,res)=>{
         const alumno = await Alumno.findById({_id:req.params.id});
