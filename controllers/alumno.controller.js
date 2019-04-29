@@ -14,9 +14,26 @@ module.exports = {
             res.json(alumnos);
         }
     },
-    getAlumno:async(req,res)=>{
+    /*getAlumno:async(req,res)=>{
         const alumno = await Alumno.findOne({controlNumber:req.params.id});
         res.json(alumno);
+    },*/
+    getAlumno:async(req,res)=>{
+        const alumno = await Alumno.aggregate([
+            {   
+                $lookup: {
+                    from: 'periodos',
+                    localField: 'periodo',
+                    foreignField: '_id',
+                    as: 'alumno_periodo'
+                }
+            },
+            {
+                $match: {
+                    user:req.params.id
+                }
+            }
+        ]);
     },
     getAlumnoById:async(req,res)=>{
         const alumno = await Alumno.findById({_id:req.params.id});
