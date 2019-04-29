@@ -30,7 +30,7 @@ module.exports = {
             },
             {
                 $match: {
-                    user:req.params.id
+                    controlNumber:req.params.id
                 }
             }
         ]);
