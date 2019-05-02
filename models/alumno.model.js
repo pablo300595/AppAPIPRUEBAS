@@ -33,7 +33,8 @@ const AlumnoSchema=new Schema({
             {documentName: String, status:String, observacion:String}
         ], required:false},
     statusInscripcion: {type: String, required:false},
-    validated:{type: Boolean, required:false}
+    validated:{type: Boolean, required:false},
+    periodo:{ type: Schema.ObjectId, ref: 'Periodo' }
 });
 
 module.exports = mongoose.model('Alumno',AlumnoSchema);
