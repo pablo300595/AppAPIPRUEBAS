@@ -7,7 +7,17 @@ module.exports = {
     },
     getAlumnosByCareer:async(req,res)=>{
         if(req.body[0].credential == 'chief'){
-            const alumnos = await Alumno.find();
+            // const alumnos = await Alumno.find();
+            const alumnos = await Alumno.aggregate([
+                {   
+                    $lookup: {
+                        from: 'periodos',
+                        localField: 'periodo',
+                        foreignField: '_id',
+                        as: 'alumno_periodo'
+                    }
+                }
+            ]);
             res.json(alumnos);
         }else{
             const alumnos = await Alumno.find({career: {$in: req.body[0].usuario_secretaria[0].career}});
