@@ -2,7 +2,16 @@ const Alumno = require('./../models/alumno.model');
 
 module.exports = {
     getAlumnos:async(req,res)=>{
-        const alumnos = await Alumno.find();
+        const alumnos = await Alumno.aggregate([
+            {   
+                $lookup: {
+                    from: 'periodos',
+                    localField: 'periodo',
+                    foreignField: '_id',
+                    as: 'alumno_periodo'
+                }
+            }
+        ]);
         res.json(alumnos);
     },
     getAlumnosByCareer:async(req,res)=>{
