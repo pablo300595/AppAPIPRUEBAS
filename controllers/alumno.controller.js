@@ -143,6 +143,16 @@ module.exports = {
         );
         res.json({'status':'status inscripcion actualizado'});
     },
+    updateAlumnoInscripcionStatusByCtrl:async(req,res)=>{
+        const ctrl = req.params.id;
+        const alumno = {
+            statusInscripcion: req.body.statusInscripcion
+        }
+        await Alumno.findOneAndUpdate(ctrl, {$set: alumno}, {new: true}).then(
+            res => console.log('finished')
+        );
+        res.json({'status':'status inscripcion actualizado'});
+    },
     updateAlumnoDocumentation: async(req,res)=>{
         const documentation = await Alumno.findById({_id:req.params.id},
             'documents').catch();
