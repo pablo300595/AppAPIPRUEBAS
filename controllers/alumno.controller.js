@@ -163,16 +163,16 @@ module.exports = {
                 if(documents[i].documentName== req.body.documentName){
                     await Alumno.findByIdAndUpdate({ _id: req.params.id }, 
                         { $pull: { documents: {_id: documents[i].id }}});
-                    await Alumno.findByIdAndUpdate({ _id: req.params.id }, 
-                        { $push: { documents: req.body }, $sort: { ts: -1 } });
+                    
                     break;
                 }
             }
         }catch(e){
             console.log(e);
         }
-        
-        res.json(documentation);
+        const documentsWithAddedElement = await Alumno.findOneAndUpdate({controlNumber: req.params.id }, 
+            { $push: { documents: req.body }}); 
+        res.json({'Message':'Documentation updated'});
     },
     updateAlumnoDocumentationByCtrlNumber:async(req,res)=>{
         const documentation = await Alumno.findOne({controlNumber:req.params.id},
