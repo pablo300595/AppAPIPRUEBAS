@@ -22,7 +22,7 @@ module.exports = {
             periodo : req.body.periodo,
             añoPeriodo : req.body.añoPeriodo,
             fechaApertura : req.body.fechaApertura,
-            fechaCierre : req.body.fechaCierre,
+            fechaCierre : new Date(),
             activo : req.body.activo,
             alumnos : req.body.alumnos
 
