@@ -14,7 +14,7 @@ const fileUpload = require('express-fileupload');
 
 const {mongoose} = require ('./db');
 //config
-app.set('port',process.env.PORT || 3001);
+app.set('port',process.env.PORT || 3000);
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');

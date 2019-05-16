@@ -1,4 +1,5 @@
 const Alumno = require('./../models/alumno.model');
+var mongoose = require('mongoose');
 
 module.exports = {
     getAlumnos:async(req,res)=>{
@@ -197,7 +198,8 @@ module.exports = {
        
     },
     updateAlumnoPeriodById: async(req, res) => {
-        await Alumno.findByIdAndUpdate({_id:req.params.id},{$set:{ periodo: req.body }}).catch();
+        const period = mongoose.Types.ObjectId(req.body.periodo);
+        await Alumno.findByIdAndUpdate({_id:req.params.id},{$set:{ periodo: period }}).catch();
         res.json({"status":"Periodo actualizado"});
     },
     insertAlumnoDocumentation:async(req,res) => {
