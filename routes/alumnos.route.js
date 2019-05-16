@@ -5,7 +5,7 @@ const {getAlumnos,insertAlumno,getAlumno,updateAlumno,deleteAlumno,
     updateAlumnoByCtrlNumber, getAlumnoById, updateAlumnoDocumentation,
     updateAlumnoDocumentationByCtrlNumber, getAlumnoDocumentation,
     insertAlumnoDocumentation, getAlumnosByCareer, updateAlumnoInscripcionStatusByCtrl,
-    updateAlumnoPeriodById} = require('../controllers/alumno.controller');
+    updateAlumnoPeriodById, getAlumnoByCtrl} = require('../controllers/alumno.controller');
 
 routerAlumno.route('/')
     .get(getAlumnos)
@@ -20,6 +20,7 @@ routerAlumno.route('/:id')
     .delete(deleteAlumno);
 
 routerAlumno.route('/ctrl/:id')
+    .get(getAlumnoByCtrl)
     .put(updateAlumnoByCtrlNumber)
 
 routerAlumno.route('/id/:id')
