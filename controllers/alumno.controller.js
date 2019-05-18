@@ -196,6 +196,10 @@ module.exports = {
         res.json({'Message':'Documentation updated'});
        
     },
+    updateAlumnoPeriodById: async(req, res) => {
+        await Alumno.findByIdAndUpdate({_id:req.params.id},{$set:{ periodo: req.body }}).catch();
+        res.json({"status":"Periodo actualizado"});
+    },
     insertAlumnoDocumentation:async(req,res) => {
         await Alumno.findByIdAndUpdate({_id:req.params.id},{$set:{ documents: req.body }}).catch();
         res.json({"status":"Documentación insertada"});

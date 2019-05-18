@@ -4,7 +4,8 @@ const {getAlumnos,insertAlumno,getAlumno,updateAlumno,deleteAlumno,
     updateAlumnoInscripcionStatus,getAlumnoStatusInscripcion, 
     updateAlumnoByCtrlNumber, getAlumnoById, updateAlumnoDocumentation,
     updateAlumnoDocumentationByCtrlNumber, getAlumnoDocumentation,
-    insertAlumnoDocumentation, getAlumnosByCareer, updateAlumnoInscripcionStatusByCtrl} = require('../controllers/alumno.controller');
+    insertAlumnoDocumentation, getAlumnosByCareer, updateAlumnoInscripcionStatusByCtrl,
+    updateAlumnoPeriodById} = require('../controllers/alumno.controller');
 
 routerAlumno.route('/')
     .get(getAlumnos)
@@ -40,4 +41,6 @@ routerAlumno.route('/documentation/ctrl/:id')
 routerAlumno.route('/status/ctrl/:id')
     .put(updateAlumnoInscripcionStatusByCtrl);
 
+routerAlumno.route('/periodo/:id')
+    .put(updateAlumnoPeriodById);
 module.exports = routerAlumno;
