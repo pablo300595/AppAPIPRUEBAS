@@ -153,7 +153,7 @@ module.exports = {
         const alumno = {
             statusInscripcion: req.body.statusInscripcion
         }
-        await Alumno.findOneAndUpdate(ctrl, {$set: alumno}, {new: true}).then(
+        const search = await Alumno.findOneAndUpdate({controlNumber: req.params.id}, {$set: {statusInscripcion: req.body.statusInscripcion}}, {new: true}).then(
             res => console.log('finished')
         );
         res.json({'status':'status inscripcion actualizado'});
