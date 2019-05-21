@@ -143,7 +143,7 @@ module.exports = {
         const alumno = {
             statusInscripcion: req.body.statusInscripcion
         }
-        await Alumno.findByIdAndUpdate(id, {$set: alumno}, {new: true}).then(
+        await Alumno.findByIdAndUpdate({_id: req.params.id}, {$set: {statusInscripcion: req.body.statusInscripcion}}, {new: true}).then(
             res => console.log('finished')
         );
         res.json({'status':'status inscripcion actualizado'});
