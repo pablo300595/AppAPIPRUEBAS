@@ -143,7 +143,7 @@ module.exports = {
         const alumno = {
             statusInscripcion: req.body.statusInscripcion
         }
-        await Alumno.findByIdAndUpdate({_id: req.params.id}, {$set: {statusInscripcion: req.body.statusInscripcion}}, {new: true}).then(
+        const query = await Alumno.findByIdAndUpdate({_id: req.params.id}, {$set: {statusInscripcion: req.body.statusInscripcion}}, {new: true}).then(
             res => console.log('finished')
         );
         res.json({'status':'status inscripcion actualizado'});
@@ -218,6 +218,20 @@ module.exports = {
     deleteAlumno:async(req,res)=>{
         await Alumno.findOneAndDelete({controlNumber:req.params.id});
         res.json({status: 'Alumno Eliminado'});
+    },
+    initDocumentation:async(req,res)=>{
+        const documentation = [
+            {documentName: 'CURP', status: 'En proceso', observacion: ''},
+            {documentName: 'ACTA', status: 'En proceso', observacion: ''},
+            {documentName: 'NSS', status: 'En proceso', observacion: ''},
+            {documentName: 'FORMULARIO', status: 'En proceso', observacion: ''},
+            {documentName: 'FOTO', status: 'En proceso', observacion: ''},
+            {documentName: 'COMPROBANTE', status: 'En proceso', observacion: ''},
+            {documentName: 'CLINICOS', status: 'En proceso', observacion: ''},
+            {documentName: 'CERTIFICADO', status: 'En proceso', observacion: ''}
+        ];
+        const query = await Alumno.findByIdAndUpdate({_id: req.params.id}, {$set:{documents: documentation}}, {new: true});
+        res.json({status: 'Alumno con documentos inicializados'});
     }
 
     

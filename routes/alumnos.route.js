@@ -5,7 +5,7 @@ const {getAlumnos,insertAlumno,getAlumno,updateAlumno,deleteAlumno,
     updateAlumnoByCtrlNumber, getAlumnoById, updateAlumnoDocumentation,
     updateAlumnoDocumentationByCtrlNumber, getAlumnoDocumentation,
     insertAlumnoDocumentation, getAlumnosByCareer, updateAlumnoInscripcionStatusByCtrl,
-    updateAlumnoPeriodById, getAlumnoByCtrl} = require('../controllers/alumno.controller');
+    updateAlumnoPeriodById, getAlumnoByCtrl, initDocumentation} = require('../controllers/alumno.controller');
 
 routerAlumno.route('/')
     .get(getAlumnos)
@@ -35,6 +35,9 @@ routerAlumno.route('/documentation/:id')
     .get(getAlumnoDocumentation)
     .post(insertAlumnoDocumentation)
     .put(updateAlumnoDocumentation);
+
+routerAlumno.route('/documentation/init/:id')
+    .put(initDocumentation);
 
 routerAlumno.route('/documentation/ctrl/:id')
     .put(updateAlumnoDocumentationByCtrlNumber);
