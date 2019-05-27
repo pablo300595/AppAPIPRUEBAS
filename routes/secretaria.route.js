@@ -1,7 +1,8 @@
 const express = require('express');
 const routerSecretaria = express.Router();
 
-const {getSecretaria, insertSecretaria, updateSecretaria, getSecretarias} = require('./../controllers/secretaria.controller');
+const {getSecretaria, insertSecretaria, updateSecretaria, getSecretarias,
+updateSecretariaCareer} = require('./../controllers/secretaria.controller');
 
 routerSecretaria.route('/')
     .get(getSecretarias)
@@ -10,5 +11,8 @@ routerSecretaria.route('/')
 routerSecretaria.route('/:id')
     .get(getSecretaria)
     .put(updateSecretaria);
+
+routerSecretaria.route('/career/:id')
+    .put(updateSecretariaCareer);
 
 module.exports = routerSecretaria;

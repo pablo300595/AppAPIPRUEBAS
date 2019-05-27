@@ -25,5 +25,10 @@ module.exports = {
         };
         await Secretaria.findByIdAndUpdate(id, {$set: secretaria}, {new: true});
         res.json({'status':'Secretaria actualizada'});
+    },
+    updateSecretariaCareer: async(req,res) => {
+        const newCareer = req.body.career;
+        const query = await Secretaria.findByIdAndUpdate({_id: req.params.id}, {$set:{career: newCareer}}, {new: true});
+        res.json({status: 'Secretaria con carreras actualizadas'});
     }
 }
