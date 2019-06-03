@@ -221,14 +221,14 @@ module.exports = {
     },
     initDocumentation:async(req,res)=>{
         const documentation = [
-            {documentName: 'CURP', status: 'En proceso', observacion: ''},
-            {documentName: 'ACTA', status: 'En proceso', observacion: ''},
-            {documentName: 'NSS', status: 'En proceso', observacion: ''},
-            {documentName: 'FORMULARIO', status: 'En proceso', observacion: ''},
-            {documentName: 'FOTO', status: 'En proceso', observacion: ''},
-            {documentName: 'COMPROBANTE', status: 'En proceso', observacion: ''},
-            {documentName: 'CLINICOS', status: 'En proceso', observacion: ''},
-            {documentName: 'CERTIFICADO', status: 'En proceso', observacion: ''}
+            {documentName: 'CURP', status: 'En captura', observacion: ''},
+            {documentName: 'ACTA', status: 'En captura', observacion: ''},
+            {documentName: 'NSS', status: 'En captura', observacion: ''},
+            {documentName: 'FORMULARIO', status: 'En captura', observacion: ''},
+            {documentName: 'FOTO', status: 'En captura', observacion: ''},
+            {documentName: 'COMPROBANTE', status: 'En captura', observacion: ''},
+            {documentName: 'CLINICOS', status: 'En captura', observacion: ''},
+            {documentName: 'CERTIFICADO', status: 'En captura', observacion: ''}
         ];
         const query = await Alumno.findByIdAndUpdate({_id: req.params.id}, {$set:{documents: documentation}}, {new: true});
         res.json({status: 'Alumno con documentos inicializados'});
